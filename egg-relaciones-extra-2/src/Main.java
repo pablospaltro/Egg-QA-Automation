@@ -8,7 +8,7 @@ public class Main {
         CineServicio cS= new CineServicio();
         Cine cine;
         cine= cS.mostrarCine();
-        System.out.println(cine.getSala()[3][4].toString());
+
 
 
     }
