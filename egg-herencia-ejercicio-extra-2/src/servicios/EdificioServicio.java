@@ -55,6 +55,9 @@ public class EdificioServicio {
         System.out.print("Alto: ");
         poli.setAlto(scanner.nextDouble());
 
+        System.out.println("\nSuperficie total del polideportivo: "+poli.calcularSuperficie()+" m2");
+        System.out.println("Volumen total del polideportivo: "+poli.calcularVolumen()+" m3");
+
         polideportivos.add(poli);
         System.out.println("-- Polideportivo generado exitosamente. --");
     }
@@ -79,6 +82,9 @@ public class EdificioServicio {
         System.out.print("Numero de pisos: ");
         edificio.setNumeroDePisos(scanner.nextInt());
         scanner.nextLine();
+
+        System.out.println("\nSuperficie total del edificio: "+edificio.calcularSuperficie()+" m2");
+        System.out.println("Volumen total del edificio: "+edificio.calcularVolumen()+" m3");
         establecerTotalDePersonasEnEdificio(edificio);
 
         edificiosDeOficinas.add(edificio);
