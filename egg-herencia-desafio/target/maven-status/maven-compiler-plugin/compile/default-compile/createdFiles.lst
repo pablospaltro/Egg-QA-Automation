@@ -1,0 +1,14 @@
+Entities\SinFactorDeRiesgo.class
+APP\G12_Desafio.class
+Entities\Integrante.class
+Entities\Joven.class
+Entities\AbordajeNutricional.class
+Entities\AdultoMayor.class
+Entities\Ninio.class
+Entities\Familia.class
+Entities\ProblemaDeSalud.class
+Enums\Pisos.class
+Entities\InformacionVivienda.class
+Enums\Paredes.class
+Entities\Adulto.class
+Entities\ConFactorDeRiesgo.class
