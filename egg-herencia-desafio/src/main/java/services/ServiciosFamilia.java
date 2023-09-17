@@ -6,9 +6,14 @@ package services;
 
 import entities.Familia;
 import entities.InformacionVivienda;
+import entities.Integrante;
 import enums.Paredes;
 import enums.Pisos;
+import enums.Sexo;
+import enums.Vinculos;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -48,6 +53,7 @@ public class ServiciosFamilia {
                     break;
                 case 0:
                     System.out.println("Saliendo...\nAdios!");
+                    volverAlMenu=false;
                     break;
 
             }
@@ -57,6 +63,7 @@ public class ServiciosFamilia {
     public void crearFamilia() {
         Familia familia = new Familia();
 
+        System.out.println("FAMILIA");
         System.out.println("Direccion: ");
         familia.setDireccion(scanner.nextLine());
         System.out.println("Numero de lote: ");
@@ -74,7 +81,7 @@ public class ServiciosFamilia {
 
     public void crearVivienda(Familia familia) {
         InformacionVivienda infoVivienda = new InformacionVivienda();
-        System.out.println("Vamos a crear tu vivienda");
+        System.out.println("\nVIVIENDA");
         System.out.println("Numero de dormitorios: ");
         infoVivienda.setNumeroDormitorios(scanner.nextInt());
         scanner.nextLine();
@@ -116,7 +123,7 @@ public class ServiciosFamilia {
     }
 
     public Pisos ingresarTipoPiso() {
-        System.out.println("Tipo de paredes: \n1 | MOSAICO\n2 | CEMENTO\n3 | TIERRA\n4 | OTROS ");
+        System.out.println("Tipo de piso: \n1 | MOSAICO\n2 | CEMENTO\n3 | TIERRA\n4 | OTROS ");
         int pisoIngresado = scanner.nextInt();
         scanner.nextLine();
 
@@ -135,6 +142,51 @@ public class ServiciosFamilia {
 
     public void crearIntegrantes(Familia familia) {
 
+        System.out.println("\nCuantos integrantes tiene la familia?");
+        int cantidadFamiliares = scanner.nextInt();
+        scanner.nextLine();
+
+        ArrayList<Integrante> integrantes = new ArrayList<>();
+
+        for(int i=0; i<cantidadFamiliares; i++){
+
+            System.out.println("\nIntegrante "+(i+1)+" :");
+            Integrante integrante = new Integrante();
+
+            System.out.println("Nombre: ");
+            integrante.setNombre(scanner.nextLine());
+            System.out.println("Apellido: ");
+            integrante.setApellido(scanner.nextLine());
+            System.out.print("Ingrese una fecha en el formato YYYY-MM-DD: ");
+            String fechaTexto = scanner.nextLine();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            try {
+                LocalDate fecha = LocalDate.parse(fechaTexto, formatter);
+                System.out.println("Fecha ingresada: " + fecha);
+            } catch (Exception e) {
+                System.out.println("Formato de fecha incorrecto. Asegúrese de usar el formato YYYY-MM-DD.");
+            }
+            System.out.println("Sexo: M / F");
+            integrante.setSexo(Sexo.valueOf(scanner.nextLine().toUpperCase()));
+            System.out.println("Vínculo: Madre, Padre, Hijo/a, Abuelo/a");
+            integrante.setVinculo(Vinculos.valueOf(scanner.nextLine().toUpperCase()));
+            ingresarProblemaDeSalud(integrante);
+            ingresarAbordajeNutricional(integrante);
+
+            integrantes.add(integrante);
+        }
+
+        familia.setListaIntegrantes(integrantes);
+    }
+
+    public void ingresarProblemaDeSalud(Integrante integrante){
+
+
+    }
+
+    public void ingresarAbordajeNutricional(Integrante integrante){
+
     }
 
     public void mostrarFamilias() {
@@ -146,11 +198,37 @@ public class ServiciosFamilia {
 
     public void actualizarFamilia() {
         System.out.println("Ingrese el IDE de la familia a actualizar: ");
+        int ideIngresado = scanner.nextInt();
+        scanner.nextLine();
+
+        for(Familia familia : familias){
+            if(familia.getIDE() == ideIngresado){
+                System.out.println("Ok, vamos a actualizar: \n"+familia.toString());
+                System.out.println("Direccion: ");
+                familia.setDireccion(scanner.nextLine());
+                System.out.println("Numero de lote: ");
+                familia.setNumeroLote(scanner.nextInt());
+                scanner.nextLine();
+                System.out.println("Barrio: ");
+                familia.setBarrio(scanner.nextLine());
+                System.out.println("Localidad: ");
+                familia.setLocalidad(scanner.nextLine());
+                crearVivienda(familia);
+                crearIntegrantes(familia);
+
+                familias.add(familia);
+
+            }
+        }
 
     }
 
     public void eliminarFamilia() {
+        System.out.println("Ingrese el IDE de la familia a eliminar: ");
+        int ideIngresado = scanner.nextInt();
+        scanner.nextLine();
 
+        familias.removeIf(familia -> familia.getIDE() == ideIngresado);
     }
 }
 

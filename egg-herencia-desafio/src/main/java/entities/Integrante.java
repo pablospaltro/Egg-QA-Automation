@@ -119,6 +119,20 @@ public class Integrante {
     public void setNutricion(AbordajeNutricional nutricion) {
         this.nutricion = nutricion;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Integrante{" +
+                "orden=" + orden +
+                ", apellido='" + apellido + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
+                ", DNI=" + DNI +
+                ", sexo=" + sexo +
+                ", vinculo=" + vinculo +
+                ", salud=" + salud +
+                ", nutricion=" + nutricion +
+                ", familia=" + familia +
+                '}';
+    }
 }
