@@ -24,7 +24,12 @@ public class FirstTest {
 
         searchInput.sendKeys("Selenium");
 
-        Assert.assertEquals(footerLink.getText(), "Puedes apoyar nuestro trabajo con una donación.");
+        Assert.assertEquals(footerLink.getText(), "You can support our work with a donation.");
+
+        WebElement submitBtn = driver.findElement(By.cssSelector("button[type=\"submit\"]"));
+
+        Assert.assertTrue(submitBtn.isDisplayed());
+        submitBtn.click();
 
         driver.close();
     }
