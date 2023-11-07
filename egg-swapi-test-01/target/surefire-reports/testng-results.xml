@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-11-06T21:10:41 ART" name="Surefire suite" finished-at="2023-11-06T21:10:48 ART" duration-ms="7372">
+    <groups>
+    </groups>
+    <test started-at="2023-11-06T21:10:41 ART" name="Surefire test" finished-at="2023-11-06T21:10:48 ART" duration-ms="7372">
+      <class name="test.SwapiTest">
+        <test-method is-config="true" signature="SetUp()[pri:0, instance:test.SwapiTest@2133814f]" started-at="2023-11-06T21:10:41 ART" name="SetUp" finished-at="2023-11-06T21:10:48 ART" duration-ms="6882" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SetUp -->
+        <test-method signature="PeopleEndpointTest()[pri:0, instance:test.SwapiTest@2133814f]" started-at="2023-11-06T21:10:48 ART" name="PeopleEndpointTest" finished-at="2023-11-06T21:10:48 ART" duration-ms="367" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PeopleEndpointTest -->
+      </class> <!-- test.SwapiTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>
