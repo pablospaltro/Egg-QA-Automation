@@ -8,6 +8,9 @@ import org.testng.annotations.Test;
 import pojos.People;
 import io.restassured.RestAssured;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.*;
 
@@ -38,6 +41,38 @@ public class SwapiTest {
         assertEquals("gold", people.getSkin_color());
         assertEquals(6, people.getFilms().size());
         System.out.println(people);
+    }
+
+    @Test
+    public void PeopleElementsTest(){
+
+        /*
+        despues de guardar people/2 en classResponse, obtengo el item de indice 1 de lista Films
+        y guardo en Response filmResponse
+         */
+        
+        Response filmResponse = given().when().get(peopleClassResponse.jsonPath().getString("films[1]"));
+        assertEquals(200, filmResponse.getStatusCode());
+
+        String releaseDate = filmResponse.jsonPath().getString("release_date");
+        assertTrue(validateDateFormat(releaseDate));
+
+        //Verifico que todas los atributos lista correspondientes a filmResponse tengan mas de 1 elemento.
+        assertTrue(filmResponse.jsonPath().getList("characters").size() > 1);
+        assertTrue(filmResponse.jsonPath().getList("planets").size() > 1);
+        assertTrue(filmResponse.jsonPath().getList("starships").size() > 1);
+        assertTrue(filmResponse.jsonPath().getList("vehicles").size() > 1);
+        assertTrue(filmResponse.jsonPath().getList("species").size() > 1);
+    }
+
+    private boolean validateDateFormat(String date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            dateFormat.parse(date);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
     }
 
 }
