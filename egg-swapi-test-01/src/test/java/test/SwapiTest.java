@@ -50,7 +50,7 @@ public class SwapiTest {
         despues de guardar people/2 en classResponse, obtengo el item de indice 1 de lista Films
         y guardo en Response filmResponse
          */
-        
+
         Response filmResponse = given().when().get(peopleClassResponse.jsonPath().getString("films[1]"));
         assertEquals(200, filmResponse.getStatusCode());
 
