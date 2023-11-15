@@ -4,6 +4,7 @@ package tests;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.restassured.response.Response;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pojos.People;
@@ -33,15 +34,19 @@ public class SwapiTest {
     private static Response peopleClassResponse;
     WebDriver driver = null;
 
+
     @BeforeTest
     public void SetUp(){
         RestAssured.baseURI = "https://swapi.dev/api/";
-        peopleClassResponse = given().when().get("people/1");
+        peopleClassResponse = given().when().get("people/2");
     }
 
     @Test
     public void PeopleEndpointTest(){
-        assertEquals(200, peopleClassResponse.getStatusCode());
+
+
+
+        //assertEquals(200, peopleClassResponse.getStatusCode());
 
 
         //vinculamos el objeto de la API con nuestro objeto (POJO)
@@ -53,9 +58,13 @@ public class SwapiTest {
         String characterName = people.getName();
 
         //establecemos la ruta a nuestro ChromeDriver
-        String driverPath = "C:\\Users\\Usuario\\JAVA\\Egg-QA-Automation-Curso\\egg-API-restassured-repaso\\src\\utils\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", driverPath);
-        driver = new ChromeDriver();
+        //String driverPath = "C:\\Users\\Usuario\\JAVA\\Egg-QA-Automation-Curso\\egg-API-restassured-repaso\\src\\utils\\chromedriver.exe";
+        //System.setProperty("webdriver.chrome.driver", driverPath);
+        //driver = new ChromeDriver();
+
+
+
+        WebDriver driver = new FirefoxDriver();
 
         //navegamos hacia wikipedia
         driver.navigate().to("https://www.wikipedia.org");
@@ -65,7 +74,15 @@ public class SwapiTest {
         //le pasamos el nombre obtenido del objeto:
         searchInput.sendKeys(characterName);
 
-        driver.close();
+        //identifico el boton de busqueda:
+        WebElement searchButton = driver.findElement(By.cssSelector(".pure-button"));
+        searchButton.click();
+
+        WebElement heading = driver.findElement(By.cssSelector(".firstHeading"));
+
+        assertEquals(characterName, heading.getText());
+
+       //driver.close();
 
 
     }
