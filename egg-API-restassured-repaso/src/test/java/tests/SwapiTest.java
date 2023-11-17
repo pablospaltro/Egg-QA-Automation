@@ -58,13 +58,13 @@ public class SwapiTest {
         String characterName = people.getName();
 
         //establecemos la ruta a nuestro ChromeDriver
-        //String driverPath = "C:\\Users\\Usuario\\JAVA\\Egg-QA-Automation-Curso\\egg-API-restassured-repaso\\src\\utils\\chromedriver.exe";
-        //System.setProperty("webdriver.chrome.driver", driverPath);
-        //driver = new ChromeDriver();
+        String driverPath = "C:\\Users\\Usuario\\JAVA\\Egg-QA-Automation-Curso\\egg-API-restassured-repaso\\src\\utils\\chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", driverPath);
+        driver = new ChromeDriver();
 
 
 
-        WebDriver driver = new FirefoxDriver();
+        //WebDriver driver = new FirefoxDriver();
 
         //navegamos hacia wikipedia
         driver.navigate().to("https://www.wikipedia.org");
