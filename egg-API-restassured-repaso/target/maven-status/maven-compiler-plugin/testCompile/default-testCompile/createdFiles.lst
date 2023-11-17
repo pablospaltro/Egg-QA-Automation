@@ -1,2 +1,5 @@
+Pages\BasePage.class
+Pages\SearchResults.class
+Pages\HomePage.class
 pojos\People.class
-tests\SwapiTest.class
+tests\TestRunner.class
