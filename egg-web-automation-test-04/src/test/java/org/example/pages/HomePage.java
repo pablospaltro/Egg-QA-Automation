@@ -20,11 +20,18 @@ public class HomePage extends BasePage{
     @FindBy(css=".nav-icon-search")
     private WebElement submitBtn;
 
+    @FindBy(css = "ul.nav-menu-list > li:nth-child(7)")
+    private WebElement sellBtn;
+
     public void setBarText(String text){
         this.searchInput.sendKeys(text);
     }
 
     public void clickOnSearch(){
         this.submitBtn.click();
+    }
+
+    public void clickOnSell() {
+        this.sellBtn.click();
     }
 }
